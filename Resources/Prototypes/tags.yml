@@ -150,6 +150,9 @@
   id: Bot # Targeting whitelist: ChameleonProjector
 
 - type: Tag
+  id: BotanyTool
+
+- type: Tag
   id: BotanyHatchet # Storage whitelist: ClothingBeltPlant. ItemMapper: ClothingBeltPlant
 
 - type: Tag
