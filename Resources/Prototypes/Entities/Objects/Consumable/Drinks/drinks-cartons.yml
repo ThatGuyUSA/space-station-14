@@ -26,6 +26,8 @@
   components:
   - type: Item
     size: Normal
+  - type: Tag
+    tags: [ ]
 
 - type: entity
   abstract: true
