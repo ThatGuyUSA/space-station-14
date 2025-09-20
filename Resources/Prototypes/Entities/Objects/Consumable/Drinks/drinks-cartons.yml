@@ -20,7 +20,7 @@
   suffix: Full
   components:
   - type: Tag
-    tags: []
+    tags: [ Ingredient ]
 
 - type: entity
   abstract: true
@@ -30,7 +30,7 @@
   - type: Item
     size: Normal
   - type: Tag
-    tags: [ ]
+    tags: [ Ingredient ]
 
 - type: entity
   abstract: true
