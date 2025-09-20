@@ -9,6 +9,9 @@
     closeable: true
     closeSound:
       collection: bottleCloseSounds
+  - type: Tag
+    tags:
+    - Ingredient
 
 - type: entity
   abstract: true

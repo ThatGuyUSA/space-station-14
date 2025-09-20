@@ -1186,8 +1186,7 @@
           - Dinnerware
           - DrinkCup
           components:
-          - Utensil
-          - Food
+          - Edible
     - item: KitchenKnife
     - item: RollingPin
     - item: BorgDropper
@@ -1207,9 +1206,10 @@
           - Ingredient
           - Meat
           - Packet
-          - MonkeyCube
+          - WrappedCube
           components:
           - Produce
+          - Rehydratable # For butchering
         blacklist:
           tags:
           - Soup

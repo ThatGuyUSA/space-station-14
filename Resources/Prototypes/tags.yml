@@ -1594,6 +1594,9 @@
   id: Write # Used by PaperSystem to make tagged entity a writing tool. Many storages whitelist this as well.
 
 - type: Tag
+  id: WrappedCube
+
+- type: Tag
   id: WriteIgnoreStamps # Used by PaperSystem to allow tagged entity to bypass stamps.
 
 ## X ##
