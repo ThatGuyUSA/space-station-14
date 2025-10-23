@@ -261,7 +261,7 @@
     slowdownAmount: 10
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
-
+    
 - type: entity
   name : disabler bolt
   id: BulletDisabler
