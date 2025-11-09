@@ -334,3 +334,5 @@
         Blunt: 10
   - type: EmitSoundOnTrigger
     sound: /Audio/Weapons/smash.ogg
+  - type: EmitSoundOnCollide
+    sound: /Audio/Weapons/smash.ogg
