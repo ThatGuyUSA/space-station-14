@@ -65,7 +65,7 @@
     range: 20
     checkCanAccess: false
   - type: WorldTargetAction
-    event: !type:ProjectileSpellEvent
+    event: !type:HomingProjectileSpellEvent
       prototype: ProjectileMagicalToolbox
   - type: SpeakOnAction
     sentence: action-speech-spell-toolbox
