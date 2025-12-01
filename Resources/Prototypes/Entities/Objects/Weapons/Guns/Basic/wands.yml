@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: WeaponWandBase
   id: WeaponWandPolymorphBase
   abstract: true
@@ -111,6 +111,26 @@
     proto: BulletInstakillMagic
     capacity: 3
     count: 3
+
+- type: entity
+  name: wand of healing
+  parent: WeaponWandBase
+  id: WeaponWandHealing
+  description: You don't foresee having to use this in your quest for carnage too often.
+  components:
+  - type: Sprite
+    layers:
+    - state: nothing
+  - type: Item
+    heldPrefix: nothing
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ProjectileHealingBolt
+    capacity: 10
+    count: 10
+  - type: PacifismAllowedGun
 
 - type: entity
   name: wand of entrance
