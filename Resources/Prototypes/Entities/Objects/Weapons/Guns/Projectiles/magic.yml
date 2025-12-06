@@ -245,10 +245,7 @@
     - state: spell
       color: white
   - type: RejuvenateOnTrigger
-  #- type: Projectile
-   # damage:
-    #  groups: # good enough. Maybe make it call the rejuvenate command later.
-     #   Blunt: 5
+    targetUser: true
 
 - type: entity
   id: BulletInstakillMagic
