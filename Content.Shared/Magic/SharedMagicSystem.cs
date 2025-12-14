@@ -461,10 +461,23 @@ public abstract class SharedMagicSystem : EntitySystem
             return;
 
         if (TryComp<BasicEntityAmmoProviderComponent>(wand, out var basicAmmoComp) && basicAmmoComp.Count != null)
+        {
             _gunSystem.UpdateBasicEntityAmmoCount(wand.Value, basicAmmoComp.Count.Value + ev.Charge, basicAmmoComp);
+            Log.Debug("Subtracting");
+            _charges.SetMaxCharges(wand.Value, _charges.GetCurrentCharges(wand.Value) - 1);
+            //if (_charges.GetCurrentCharges((wand.Value)) > 1)
+            //{
+            //   Log.Debug("Subtracting");
+            //   _charges.SetMaxCharges(wand.Value, _charges.GetCurrentCharges(wand.Value) - 1);
+            //}
+        }
         else if (TryComp<LimitedChargesComponent>(wand, out var charges))
+        {
+            Log.Debug("Adding as normal");
             _charges.AddCharges((wand.Value, charges), ev.Charge);
+        }
     }
+
     // End Charge Spells
     #endregion
     #region Global Spells
