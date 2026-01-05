@@ -124,9 +124,17 @@
   components:
   - type: Sprite
     layers:
-    - state: nothing
+    - state: healing
+    - state: healing-effect
+      map: ["effect"]
   - type: Item
-    heldPrefix: nothing
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: healing-inhand-left
+      right:
+      - state: healing-inhand-right
+  - type: GenericVisualizer
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg

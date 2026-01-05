@@ -45,29 +45,29 @@ namespace Content.Shared.Magic;
 /// </summary>
 public abstract class SharedMagicSystem : EntitySystem
 {
-    [Dependency] private readonly ISerializationManager _seriMan = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedGunSystem _gunSystem = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedDoorSystem _door = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly LockSystem _lock = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly SharedChargesSystem _charges = default!;
-    [Dependency] private readonly ExamineSystemShared _examine= default!;
+    [Dependency] private readonly ISerializationManager _seriMan = null!;
+    [Dependency] private readonly IMapManager _mapManager = null!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = null!;
+    [Dependency] private readonly IRobustRandom _random = null!;
+    [Dependency] private readonly SharedGunSystem _gunSystem = null!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = null!;
+    [Dependency] private readonly SharedTransformSystem _transform = null!;
+    [Dependency] private readonly INetManager _net = null!;
+    [Dependency] private readonly SharedBodySystem _body = null!;
+    [Dependency] private readonly EntityLookupSystem _lookup = null!;
+    [Dependency] private readonly SharedDoorSystem _door = null!;
+    [Dependency] private readonly InventorySystem _inventory = null!;
+    [Dependency] private readonly SharedPopupSystem _popup = null!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = null!;
+    [Dependency] private readonly LockSystem _lock = null!;
+    [Dependency] private readonly SharedHandsSystem _hands = null!;
+    [Dependency] private readonly TagSystem _tag = null!;
+    [Dependency] private readonly SharedAudioSystem _audio = null!;
+    [Dependency] private readonly SharedMindSystem _mind = null!;
+    [Dependency] private readonly SharedStunSystem _stun = null!;
+    [Dependency] private readonly TurfSystem _turf = null!;
+    [Dependency] private readonly SharedChargesSystem _charges = null!;
+    [Dependency] private readonly ExamineSystemShared _examine= null!;
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
 
@@ -462,22 +462,27 @@ public abstract class SharedMagicSystem : EntitySystem
 
         if (TryComp<BasicEntityAmmoProviderComponent>(wand, out var basicAmmoComp) && basicAmmoComp.Count != null)
         {
-            _gunSystem.UpdateBasicEntityAmmoCount(wand.Value, basicAmmoComp.Count.Value + ev.Charge, basicAmmoComp);
-            Log.Debug("Subtracting");
-            _charges.SetMaxCharges(wand.Value, _charges.GetCurrentCharges(wand.Value) - 1);
-            //if (_charges.GetCurrentCharges((wand.Value)) > 1)
-            //{
-            //   Log.Debug("Subtracting");
-            //   _charges.SetMaxCharges(wand.Value, _charges.GetCurrentCharges(wand.Value) - 1);
-            //}
+            if (basicAmmoComp.Capacity <= basicAmmoComp.Count)
+            {
+                Log.Debug("Capacity is less than ammo count, skipping.");
+                return;
+            }
+            _gunSystem.UpdateBasicEntityAmmoCount((wand.Value, basicAmmoComp), basicAmmoComp.Count.Value + ev.Charge);
+            Log.Debug("Adding charge.");
+
+            if (_random.Next(1, 6) > 4)
+            {
+                Log.Debug("20% chance succeeded!.");
+                --basicAmmoComp.Capacity;
+                Log.Debug("Lowering capacity.");
+            }
         }
+
         else if (TryComp<LimitedChargesComponent>(wand, out var charges))
         {
-            Log.Debug("Adding as normal");
-            _charges.AddCharges((wand.Value, charges), ev.Charge);
+                _charges.AddCharges((wand.Value, charges), ev.Charge);
         }
     }
-
     // End Charge Spells
     #endregion
     #region Global Spells

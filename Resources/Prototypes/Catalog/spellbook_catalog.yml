@@ -278,6 +278,19 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+- type: listing
+  id: SpellbookWandBundle
+  name: spellbook-wand-assortment-name
+  description: spellbook-wand-assortment-description
+  productEntity: ClothingBeltWandFilled
+  cost:
+    WizCoin: 5
+  categories:
+  - SpellbookEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
 # Event
 - type: listing
   id: SpellbookEventSummonGhosts

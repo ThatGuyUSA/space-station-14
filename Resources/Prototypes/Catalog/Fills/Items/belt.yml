@@ -199,10 +199,11 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: WeaponWandPolymorphCarp
-        - id: WeaponWandFireball
         - id: WeaponWandDeath
         - id: WeaponWandPolymorphDoor
+        - id: WeaponWandFireball
+        - id: WeaponWandPolymorphCarp
+        - id: WeaponWandHealing
 
 - type: entity
   id: ClothingBeltHolsterFilled

@@ -70,6 +70,9 @@ spellbook-hammer-singularity-description = Ever wonder what it'd be like to be t
 spellbook-staff-animation-name = Staff of Animation
 spellbook-staff-animation-description = Bring inanimate objects to life!
 
+spellbook-wand-assortment-name = Wand Assortment
+spellbook-wand-assortment-description = A collection of wands that allow for a wide variety of utility. The collection includes a wand of death, a wand of entrance, a wand of fireball, a wand of polymorph, and a wand of healing! Wands do not recharge, so be conservative in use. Comes in a handy belt.
+
 # Events
 
 spellbook-event-summon-ghosts-name = Summon Ghosts
