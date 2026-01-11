@@ -13,7 +13,7 @@ public sealed partial class PolymorphPrototype : IPrototype, IInheritingPrototyp
 {
     [ViewVariables]
     [IdDataField]
-    public string ID { get; private set; } = default!;
+    public string ID { get; private set; } = null!;
 
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<PolymorphPrototype>))]
     public string[]? Parents { get; private set; }
@@ -37,8 +37,14 @@ public sealed partial record PolymorphConfiguration
     /// What entity the polymorph will turn the target into
     /// must be in here because it makes no sense if it isn't
     /// </summary>
-    [DataField(required: true, serverOnly: true)]
+    [DataField(serverOnly: true)]
     public EntProtoId Entity;
+
+    /// <summary>
+    /// Will it be a random polymorph?
+    /// </summary>
+    [DataField]
+    public bool RandomEntity = false;
 
     /// <summary>
     /// Additional entity to spawn when polymorphing/reverting.
@@ -160,7 +166,7 @@ public sealed partial record PolymorphConfiguration
     public LocId? PolymorphPopup = "polymorph-popup-generic";
 
     /// <summary>
-    ///     If not null, this popup will be displayed when when being reverted from a polymorph.
+    ///     If not null, this popup will be displayed when being reverted from a polymorph.
     /// </summary>
     [DataField]
     public LocId? ExitPolymorphPopup = "polymorph-revert-popup-generic";

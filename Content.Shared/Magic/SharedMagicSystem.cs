@@ -462,22 +462,19 @@ public abstract class SharedMagicSystem : EntitySystem
 
         if (TryComp<BasicEntityAmmoProviderComponent>(wand, out var basicAmmoComp) && basicAmmoComp.Count != null)
         {
+            //if the current capacity is less or equal to ammo count, don't even try to refill/decrement
             if (basicAmmoComp.Capacity <= basicAmmoComp.Count)
             {
-                Log.Debug("Capacity is less than ammo count, skipping.");
                 return;
             }
             _gunSystem.UpdateBasicEntityAmmoCount((wand.Value, basicAmmoComp), basicAmmoComp.Count.Value + ev.Charge);
-            Log.Debug("Adding charge.");
 
+            //20% chance to lower wand capacity by 1 everytime a successful recharge is cast
             if (_random.Next(1, 6) > 4)
             {
-                Log.Debug("20% chance succeeded!.");
                 --basicAmmoComp.Capacity;
-                Log.Debug("Lowering capacity.");
             }
         }
-
         else if (TryComp<LimitedChargesComponent>(wand, out var charges))
         {
                 _charges.AddCharges((wand.Value, charges), ev.Charge);

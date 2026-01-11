@@ -21,30 +21,34 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Robust.Shared.Random;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Polymorph.Systems;
 
 public sealed partial class PolymorphSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly ServerInventorySystem _inventory = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly SharedMapSystem _map = null!;
+    [Dependency] private readonly IPrototypeManager _proto = null!;
+    [Dependency] private readonly IGameTiming _gameTiming = null!;
+    [Dependency] private readonly ActionsSystem _actions = null!;
+    [Dependency] private readonly AudioSystem _audio = null!;
+    [Dependency] private readonly SharedBuckleSystem _buckle = null!;
+    [Dependency] private readonly ContainerSystem _container = null!;
+    [Dependency] private readonly DamageableSystem _damageable = null!;
+    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = null!;
+    [Dependency] private readonly MobStateSystem _mobState = null!;
+    [Dependency] private readonly MobThresholdSystem _mobThreshold = null!;
+    [Dependency] private readonly ServerInventorySystem _inventory = null!;
+    [Dependency] private readonly SharedHandsSystem _hands = null!;
+    [Dependency] private readonly SharedPopupSystem _popup = null!;
+    [Dependency] private readonly TransformSystem _transform = null!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = null!;
+    [Dependency] private readonly MetaDataSystem _metaData = null!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private const string RevertPolymorphId = "ActionRevertPolymorph";
+    private readonly List<string> _randomPolyMobList = new();
 
     public override void Initialize()
     {
@@ -59,6 +63,22 @@ public sealed partial class PolymorphSystem : EntitySystem
         SubscribeLocalEvent<PolymorphedEntityComponent, EntityTerminatingEvent>(OnPolymorphedTerminating);
 
         InitializeMap();
+        BuildIndex();
+    }
+
+    private void BuildIndex()
+    {
+        _randomPolyMobList.Clear();
+        var mapGridCompName = Factory.GetComponentName<MapGridComponent>();
+        var mobCompName = Factory.GetComponentName<MobStateComponent>();
+
+        foreach (var proto in _proto.EnumeratePrototypes<EntityPrototype>())
+        {
+            if (proto.Abstract || proto.HideSpawnMenu || proto.Components.ContainsKey(mapGridCompName) || !proto.Components.ContainsKey(mobCompName))
+                continue;
+
+            _randomPolyMobList.Add(proto.ID);
+        }
     }
 
     public override void Update(float frameTime)
@@ -215,6 +235,10 @@ public sealed partial class PolymorphSystem : EntitySystem
         var polymorphedComp = Factory.GetComponent<PolymorphedEntityComponent>();
         polymorphedComp.Parent = uid;
         polymorphedComp.Configuration = configuration;
+
+        if (configuration.RandomEntity)
+            configuration.Entity = _random.Pick(_randomPolyMobList);
+
         AddComp(child, polymorphedComp);
 
         var childXform = Transform(child);

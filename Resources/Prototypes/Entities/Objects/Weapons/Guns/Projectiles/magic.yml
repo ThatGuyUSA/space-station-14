@@ -211,6 +211,20 @@
       - MobState
 
 - type: entity
+  id: ProjectilePolyboltRandom
+  parent: ProjectilePolyboltBase
+  name: chaos polybolt
+  description: I reject my humanity, Wizard!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PolymorphOnTrigger
+    polymorph: WizardForcedRandom
+  - type: WhitelistTriggerCondition
+    userWhitelist:
+      components:
+      - MobState
+
+- type: entity
   id: ProjectilePolyboltDoor
   parent: ProjectilePolyboltBase
   name: door polybolt

@@ -27,7 +27,7 @@ spellbook-polymorph-rod-name = Rod Polymorph
 spellbook-polymorph-rod-desc = Change into an Immovable Rod with limited movement.
 
 spellbook-charge-name = Charge
-spellbook-charge-desc = Adds a charge back to your wand!
+spellbook-charge-desc = Adds a charge back to your wand! However it occasionally backfires and decrements the total capacity of said wand.
 
 spellbook-ethereal-jaunt-name = Ethereal Jaunt
 spellbook-ethereal-jaunt-description = Slip into the ethereal plane to slip away from your enemies!

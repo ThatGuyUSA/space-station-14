@@ -14,11 +14,10 @@ namespace Content.Server.DeviceNetwork.Systems
         }
 
         /// <summary>
-        /// Handles station cameras
+        /// Checks if both devices are on the same grid
         /// </summary>
         private void OnBeforePacketSent(EntityUid uid, WiredNetworkComponent component, BeforePacketSentEvent args)
         {
-            /// if it's not on the same grid, don't share its data
             if (Transform(uid).GridUid != args.SenderTransform.GridUid)
             {
                 args.Cancel();

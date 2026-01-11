@@ -39,6 +39,17 @@
     count: 5
 
 - type: entity
+  name: wand of change
+  parent: WeaponWandPolymorphBase
+  id: WeaponWandPolymorphRandom
+  description: NAE I WANNA STAY AS MY SELF.
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ProjectilePolyboltRandom
+    capacity: 5
+    count: 5
+
+- type: entity
   name: wand of fireball
   parent: WeaponWandBase
   id: WeaponWandFireball
@@ -97,7 +108,7 @@
           False: { visible: False }
 
 - type: entity
-  name: magical wand of instant death
+  name: wand of death
   parent: WeaponWandBase
   id: WeaponWandDeath
   description: Only the best and brightest of the Space Wizards R&D team worked together to create this beauty.

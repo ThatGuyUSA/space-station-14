@@ -202,7 +202,7 @@
         - id: WeaponWandDeath
         - id: WeaponWandPolymorphDoor
         - id: WeaponWandFireball
-        - id: WeaponWandPolymorphCarp
+        - id: WeaponWandPolymorphRandom
         - id: WeaponWandHealing
 
 - type: entity

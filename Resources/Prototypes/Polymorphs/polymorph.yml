@@ -67,6 +67,21 @@
       path: /Audio/Magic/forcewall.ogg
 
 - type: polymorph
+  id: WizardForcedRandom
+  configuration:
+    randomEntity: true
+    forced: true
+    inventory: Drop
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    polymorphSound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+    exitPolymorphSound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+
+- type: polymorph
   id: WizardWallDoor
   configuration:
     entity: WoodDoor
