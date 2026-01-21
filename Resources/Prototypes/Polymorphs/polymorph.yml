@@ -69,7 +69,8 @@
 - type: polymorph
   id: WizardForcedRandom
   configuration:
-    randomEntity: true
+    #polyTable: WizardForcedRandomPolyTable
+    randomMobstate: true
     forced: true
     inventory: Drop
     transferName: true
@@ -80,6 +81,55 @@
       path: /Audio/Magic/forcewall.ogg
     exitPolymorphSound: !type:SoundPathSpecifier
       path: /Audio/Magic/forcewall.ogg
+
+- type: entityTable
+  id: WizardForcedRandomPolyTable
+  table: !type:GroupSelector
+    children:
+    - id: FoodBreadPlain
+    - id: MobGingerbread
+    - id: MobAdultSlimesBlue
+    - id: MobAdultSlimesGreen
+    - id: MobAdultSlimesYellow
+    - id: MobBehonkerGrav
+    - id: MobBreadDog
+    - id: MobCarp
+    - id: MobCarpHolo
+    - id: MobCarpRainbow
+    - id: MobCatCake
+    - id: MobCatSyndy
+    - id: MobClownSpider
+    - id: MobCockroach
+    - id: MobCorgiCerberus
+    - id: MobDragonDungeon
+    - id: MobEmotionalSupportScurret
+    - id: MobGiantSpider
+    - id: MobHellspawn
+    - id: MobKobold
+    - id: MobMonkey
+    - id: MobMouse
+    - id: MobMouse1
+    - id: MobMouse2
+    - id: MobMouse3
+    - id: MobMouseCancer
+    - id: MobRatKing
+    - id: MobRatKingBuff
+    - id: MobSkeletonPerson
+    - id: MobWatcherMagmawing
+    - id: MobXeno
+    - id: MobXenoDrone
+    - id: MobXenoPraetorian
+    - id: MobXenoRavager
+    - id: MobXenoRunner
+    - id: MobXenoSpitter
+    - id: MobXenoQueen
+    - id: PlayerBorgBattery
+    - id: PlayerBorgSyndicateSaboteurBattery
+    - id: PlayerBorgSyndicateAssaultBattery
+    - id: XenoborgStealth
+    - id: XenoborgEngi
+    - id: XenoborgHeavy
+    - id: XenoborgScout
 
 - type: polymorph
   id: WizardWallDoor

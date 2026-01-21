@@ -11,7 +11,7 @@ public sealed partial class EntityTableSpawnerComponent : Component
     /// Table that determines what gets spawned.
     /// </summary>
     [DataField(required: true)]
-    public EntityTableSelector Table = default!;
+    public EntityTableSelector Table = null!;
 
     /// <summary>
     /// Scatter of entity spawn coordinates

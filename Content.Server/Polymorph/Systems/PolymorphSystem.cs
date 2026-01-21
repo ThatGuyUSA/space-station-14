@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Humanoid;
 using Content.Server.Inventory;
@@ -45,7 +46,8 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = null!;
     [Dependency] private readonly SharedMindSystem _mindSystem = null!;
     [Dependency] private readonly MetaDataSystem _metaData = null!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IRobustRandom _random = null!;
+    [Dependency] private readonly IEntityManager _entityManager = null!;
 
     private const string RevertPolymorphId = "ActionRevertPolymorph";
     private readonly List<string> _randomPolyMobList = new();
@@ -72,6 +74,7 @@ public sealed partial class PolymorphSystem : EntitySystem
         var mapGridCompName = Factory.GetComponentName<MapGridComponent>();
         var mobCompName = Factory.GetComponentName<MobStateComponent>();
 
+        // scrape all proto, blacklist abstract, hidden, and grids though
         foreach (var proto in _proto.EnumeratePrototypes<EntityPrototype>())
         {
             if (proto.Abstract || proto.HideSpawnMenu || proto.Components.ContainsKey(mapGridCompName) || !proto.Components.ContainsKey(mobCompName))
@@ -232,12 +235,24 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         _mindSystem.MakeSentient(child);
 
+
+        if (configuration.RandomMobstate)
+        {
+            configuration.Entity = _random.Pick(_randomPolyMobList);
+        }
+
+        if (configuration.PolyTable != null!)
+        {
+            var tableEnum = configuration.PolyTable.Table.GetSpawns(new Random(), _entityManager, _proto, null!);
+            foreach (var entity in tableEnum)
+            {
+                    configuration.Entity = entity;
+            }
+        }
+
         var polymorphedComp = Factory.GetComponent<PolymorphedEntityComponent>();
         polymorphedComp.Parent = uid;
         polymorphedComp.Configuration = configuration;
-
-        if (configuration.RandomEntity)
-            configuration.Entity = _random.Pick(_randomPolyMobList);
 
         AddComp(child, polymorphedComp);
 
@@ -419,7 +434,7 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         var entProto = _proto.Index(polyProto.Configuration.Entity);
 
-        EntityUid? actionId = default!;
+        EntityUid? actionId = null!;
         if (!_actions.AddAction(target, ref actionId, RevertPolymorphId, target))
             return;
 

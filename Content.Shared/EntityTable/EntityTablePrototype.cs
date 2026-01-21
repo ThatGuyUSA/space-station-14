@@ -11,8 +11,8 @@ public sealed partial class EntityTablePrototype : IPrototype
 {
     /// <inheritdoc/>
     [IdDataField]
-    public string ID { get; private set; } = default!;
+    public string ID { get; private set; } = null!;
 
     [DataField(required: true)]
-    public EntityTableSelector Table = default!;
+    public EntityTableSelector Table = null!;
 }

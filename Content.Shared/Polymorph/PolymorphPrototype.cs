@@ -1,5 +1,7 @@
+using Content.Shared.EntityTable;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Content.Shared.EntityTable.EntitySelectors;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
 namespace Content.Shared.Polymorph;
@@ -41,10 +43,17 @@ public sealed partial record PolymorphConfiguration
     public EntProtoId Entity;
 
     /// <summary>
-    /// Will it be a random polymorph?
+    /// True random polymorph choosing from any MobState, debug or otherwise.
     /// </summary>
+    [DataField(serverOnly: true)]
+    public bool RandomMobstate;
+
+    /// <summary>
+    /// A different method of choosing, which picks from a table of prototypes
+    /// the target will turn into rather than just one target entity
+    /// </summary>1
     [DataField]
-    public bool RandomEntity = false;
+    public EntityTablePrototype PolyTable;
 
     /// <summary>
     /// Additional entity to spawn when polymorphing/reverting.
