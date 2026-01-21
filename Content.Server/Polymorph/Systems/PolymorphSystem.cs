@@ -1,6 +1,4 @@
-using System.Linq;
 using Content.Server.Actions;
-using Content.Server.Humanoid;
 using Content.Server.Inventory;
 using Content.Server.Polymorph.Components;
 using Content.Shared.Body;
@@ -31,8 +29,6 @@ namespace Content.Server.Polymorph.Systems;
 
 public sealed partial class PolymorphSystem : EntitySystem
 {
-
-
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;

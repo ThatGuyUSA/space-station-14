@@ -8,8 +8,8 @@ namespace Content.Shared.EntityTable;
 
 public sealed class EntityTableSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = null!;
-    [Dependency] private readonly IRobustRandom _random = null!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public IEnumerable<EntProtoId> GetSpawns(EntityTablePrototype entTableProto, System.Random? rand = null, EntityTableContext? ctx = null)
     {

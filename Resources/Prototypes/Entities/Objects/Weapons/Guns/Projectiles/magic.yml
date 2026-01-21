@@ -173,7 +173,7 @@
   - type: Projectile
     damage:
       types:
-        Poison: 5
+        Blunt: 1
   - type: TriggerOnCollide
     fixtureID: projectile
     # Projectile.DeleteOnCollide is true, but allow this to hit multiple entities if they're
