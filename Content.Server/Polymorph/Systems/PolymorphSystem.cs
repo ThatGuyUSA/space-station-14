@@ -3,6 +3,7 @@ using Content.Server.Actions;
 using Content.Server.Humanoid;
 using Content.Server.Inventory;
 using Content.Server.Polymorph.Components;
+using Content.Shared.Body;
 using Content.Shared.Buckle;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage.Components;
@@ -25,29 +26,32 @@ using Robust.Shared.Utility;
 using Robust.Shared.Random;
 using Robust.Shared.Map.Components;
 
+
 namespace Content.Server.Polymorph.Systems;
 
 public sealed partial class PolymorphSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMapSystem _map = null!;
-    [Dependency] private readonly IPrototypeManager _proto = null!;
-    [Dependency] private readonly IGameTiming _gameTiming = null!;
-    [Dependency] private readonly ActionsSystem _actions = null!;
-    [Dependency] private readonly AudioSystem _audio = null!;
-    [Dependency] private readonly SharedBuckleSystem _buckle = null!;
-    [Dependency] private readonly ContainerSystem _container = null!;
-    [Dependency] private readonly DamageableSystem _damageable = null!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = null!;
-    [Dependency] private readonly MobStateSystem _mobState = null!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = null!;
-    [Dependency] private readonly ServerInventorySystem _inventory = null!;
-    [Dependency] private readonly SharedHandsSystem _hands = null!;
-    [Dependency] private readonly SharedPopupSystem _popup = null!;
-    [Dependency] private readonly TransformSystem _transform = null!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = null!;
-    [Dependency] private readonly MetaDataSystem _metaData = null!;
-    [Dependency] private readonly IRobustRandom _random = null!;
-    [Dependency] private readonly IEntityManager _entityManager = null!;
+
+
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private readonly ServerInventorySystem _inventory = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     private const string RevertPolymorphId = "ActionRevertPolymorph";
     private readonly List<string> _randomPolyMobList = new();
@@ -301,7 +305,7 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         if (configuration.TransferHumanoidAppearance)
         {
-            _humanoid.CloneAppearance(uid, child);
+            _visualBody.CopyAppearanceFrom(uid, child);
         }
 
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
@@ -434,7 +438,7 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         var entProto = _proto.Index(polyProto.Configuration.Entity);
 
-        EntityUid? actionId = null!;
+        EntityUid? actionId = default!;
         if (!_actions.AddAction(target, ref actionId, RevertPolymorphId, target))
             return;
 
