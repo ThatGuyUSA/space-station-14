@@ -69,8 +69,7 @@
 - type: polymorph
   id: WizardForcedRandom
   configuration:
-    #polyTable: WizardForcedRandomPolyTable
-    randomMobstate: true
+    entity: MobKobold
     forced: true
     inventory: Drop
     transferName: true
@@ -86,50 +85,67 @@
   id: WizardForcedRandomPolyTable
   table: !type:GroupSelector
     children:
-    - id: FoodBreadPlain
-    - id: MobGingerbread
-    - id: MobAdultSlimesBlue
-    - id: MobAdultSlimesGreen
-    - id: MobAdultSlimesYellow
+    - !type:GroupSelector
+      children:
+      - id: FoodBreadPlain
+      - id: MobBreadDog
+      - id: MobCatCake
+    - !type:GroupSelector
+      children:
+      - id: MobAdultSlimesBlue
+      - id: MobAdultSlimesGreen
+      - id: MobAdultSlimesYellow
+    - !type:GroupSelector
+      children:
+      - id: MobCarp
+      - id: MobCarpHolo
+        weight: 0.5
+      - id: MobCarpRainbow
+        weight: 0.25
+    - !type:GroupSelector
+      children:
+      - id: MobKobold
+      - id: MobMonkey
+      - id: MobEmotionalSupportScurret
+        weight: 0.1
+    - !type:GroupSelector
+      children:
+      - id: MobMouse
+      - id: MobMouse1
+      - id: MobMouse2
+      - id: MobMouse3
+      - id: MobMouseCancer
+        weight: 0.5
+    - !type:GroupSelector
+      children:
+      - id: XenoborgStealth
+      - id: XenoborgEngi
+      - id: XenoborgHeavy
+      - id: XenoborgScout
+    - !type:GroupSelector
+      children:
+      - id: MobGiantSpider
+      - id: MobClownSpider
+        weight: 0.25
     - id: MobBehonkerGrav
-    - id: MobBreadDog
-    - id: MobCarp
-    - id: MobCarpHolo
-    - id: MobCarpRainbow
-    - id: MobCatCake
     - id: MobCatSyndy
-    - id: MobClownSpider
     - id: MobCockroach
     - id: MobCorgiCerberus
-    - id: MobDragonDungeon
-    - id: MobEmotionalSupportScurret
-    - id: MobGiantSpider
     - id: MobHellspawn
-    - id: MobKobold
-    - id: MobMonkey
-    - id: MobMouse
-    - id: MobMouse1
-    - id: MobMouse2
-    - id: MobMouse3
-    - id: MobMouseCancer
-    - id: MobRatKing
-    - id: MobRatKingBuff
-    - id: MobSkeletonPerson
     - id: MobWatcherMagmawing
-    - id: MobXeno
-    - id: MobXenoDrone
-    - id: MobXenoPraetorian
-    - id: MobXenoRavager
-    - id: MobXenoRunner
-    - id: MobXenoSpitter
-    - id: MobXenoQueen
     - id: PlayerBorgBattery
     - id: PlayerBorgSyndicateSaboteurBattery
+      weight: 0.1
+    - id: MobRatKing
+      weight: 0.1
+    - id: MobSkeletonPerson
+      weight: 0.1
     - id: PlayerBorgSyndicateAssaultBattery
-    - id: XenoborgStealth
-    - id: XenoborgEngi
-    - id: XenoborgHeavy
-    - id: XenoborgScout
+      weight: 0.1
+    - id: MobGingerbread
+      weight: 0.1
+    - id: MobRatKingBuff
+      weight: 0.01
 
 - type: polymorph
   id: WizardWallDoor

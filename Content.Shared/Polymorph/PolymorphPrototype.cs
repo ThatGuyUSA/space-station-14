@@ -1,7 +1,5 @@
-using Content.Shared.EntityTable;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
-using Content.Shared.EntityTable.EntitySelectors;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 
 namespace Content.Shared.Polymorph;
@@ -15,7 +13,7 @@ public sealed partial class PolymorphPrototype : IPrototype, IInheritingPrototyp
 {
     [ViewVariables]
     [IdDataField]
-    public string ID { get; private set; } = default!;
+    public string ID { get; private set; } = null!;
 
     [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<PolymorphPrototype>))]
     public string[]? Parents { get; private set; }
@@ -43,21 +41,8 @@ public sealed partial record PolymorphConfiguration
     public EntProtoId Entity;
 
     /// <summary>
-    /// True random polymorph choosing from any MobState, debug or otherwise.
-    /// </summary>
-    [DataField(serverOnly: true)]
-    public bool RandomMobstate;
-
-    /// <summary>
-    /// A different method of choosing, which picks from a table of prototypes
-    /// the target will turn into rather than just one target entity
-    /// </summary>1
-    [DataField]
-    public EntityTablePrototype PolyTable;
-
-    /// <summary>
     /// Additional entity to spawn when polymorphing/reverting.
-    /// Gets parented to the entity polymorphed into.
+    /// Gets parented to the entity transformed into.
     /// Useful for visual effects.
     /// </summary>
     [DataField(serverOnly: true)]
@@ -78,20 +63,20 @@ public sealed partial record PolymorphConfiguration
     public int? Duration;
 
     /// <summary>
-    /// whether or not the target can transform as will
+    /// whether the target can transform as will
     /// set to true for things like polymorph spells and curses
     /// </summary>
     [DataField(serverOnly: true)]
     public bool Forced;
 
     /// <summary>
-    /// Whether or not the entity transfers its damage between forms.
+    /// Whether the entity transfers its damage between forms.
     /// </summary>
     [DataField(serverOnly: true)]
     public bool TransferDamage = true;
 
     /// <summary>
-    /// Whether or not the entity transfers its name between forms.
+    /// Whether the entity transfers its name between forms.
     /// </summary>
     [DataField(serverOnly: true)]
     public bool TransferName;
@@ -103,31 +88,31 @@ public sealed partial record PolymorphConfiguration
     public bool TransferHumanoidAppearance;
 
     /// <summary>
-    /// Whether or not the entity transfers its inventory and equipment between forms.
+    /// Whether the entity transfers its inventory and equipment between forms.
     /// </summary>
     [DataField(serverOnly: true)]
     public PolymorphInventoryChange Inventory = PolymorphInventoryChange.None;
 
     /// <summary>
-    /// Whether or not the polymorph reverts when the entity goes into crit.
+    /// Whether the polymorph reverts when the entity goes into crit.
     /// </summary>
     [DataField(serverOnly: true)]
     public bool RevertOnCrit = true;
 
     /// <summary>
-    /// Whether or not the polymorph reverts when the entity dies.
+    /// Whether the polymorph reverts when the entity dies.
     /// </summary>
     [DataField(serverOnly: true)]
     public bool RevertOnDeath = true;
 
     /// <summary>
-    /// Whether or not the polymorph reverts when the entity is deleted.
+    /// Whether the polymorph reverts when the entity is deleted.
     /// </summary>
     [DataField(serverOnly: true)]
     public bool RevertOnDelete = true;
 
     /// <summary>
-    /// Whether or not the polymorph reverts when the entity is eaten or fully sliced.
+    /// Whether the polymorph reverts when the entity is eaten or fully sliced.
     /// </summary>
     [DataField(serverOnly: true)]
     public bool RevertOnEat;
@@ -169,7 +154,7 @@ public sealed partial record PolymorphConfiguration
     public SoundSpecifier? ExitPolymorphSound;
 
     /// <summary>
-    ///     If not null, this popup will be displayed when being polymorphed into something.
+    ///     If not null, this popup will be displayed when being morphed into something.
     /// </summary>
     [DataField]
     public LocId? PolymorphPopup = "polymorph-popup-generic";

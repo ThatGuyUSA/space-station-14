@@ -218,7 +218,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: PolymorphOnTrigger
-    polymorph: WizardForcedRandom
+    Polymorph: MobMonkey
+    #PolyTable: WizardForcedRandomPolyTable
+    RandomMobState: true
   - type: WhitelistTriggerCondition
     userWhitelist:
       components:
@@ -250,7 +252,7 @@
   id: ProjectileHealingBolt
   name: healing bolt
   description: I COMMAND YOU TO LIVE!
-  parent: BaseBulletTrigger
+  parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -258,8 +260,14 @@
     layers:
     - state: spell
       color: white
-  - type: RejuvenateOnTrigger
-    targetUser: true
+  - type: Projectile
+    damage:
+      groups: # good enough. Maybe make it call the rejuvenate command later.
+        Brute: -900
+        Burn: -900
+        Airloss: -600
+        Toxin: -600
+    ignoreResistances: true
 
 - type: entity
   id: BulletInstakillMagic

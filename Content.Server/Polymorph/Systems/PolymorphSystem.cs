@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Inventory;
 using Content.Server.Polymorph.Components;
@@ -21,7 +22,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Robust.Shared.Random;
 using Robust.Shared.Map.Components;
 
 
@@ -46,11 +46,8 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     private const string RevertPolymorphId = "ActionRevertPolymorph";
-    private readonly List<string> _randomPolyMobList = new();
 
     public override void Initialize()
     {
@@ -65,23 +62,6 @@ public sealed partial class PolymorphSystem : EntitySystem
         SubscribeLocalEvent<PolymorphedEntityComponent, EntityTerminatingEvent>(OnPolymorphedTerminating);
 
         InitializeMap();
-        BuildIndex();
-    }
-
-    private void BuildIndex()
-    {
-        _randomPolyMobList.Clear();
-        var mapGridCompName = Factory.GetComponentName<MapGridComponent>();
-        var mobCompName = Factory.GetComponentName<MobStateComponent>();
-
-        // scrape all proto, blacklist abstract, hidden, and grids though
-        foreach (var proto in _proto.EnumeratePrototypes<EntityPrototype>())
-        {
-            if (proto.Abstract || proto.HideSpawnMenu || proto.Components.ContainsKey(mapGridCompName) || !proto.Components.ContainsKey(mobCompName))
-                continue;
-
-            _randomPolyMobList.Add(proto.ID);
-        }
     }
 
     public override void Update(float frameTime)
@@ -234,21 +214,6 @@ public sealed partial class PolymorphSystem : EntitySystem
                 child);
 
         _mindSystem.MakeSentient(child);
-
-
-        if (configuration.RandomMobstate)
-        {
-            configuration.Entity = _random.Pick(_randomPolyMobList);
-        }
-
-        if (configuration.PolyTable != null!)
-        {
-            var tableEnum = configuration.PolyTable.Table.GetSpawns(new Random(), _entityManager, _proto, null!);
-            foreach (var entity in tableEnum)
-            {
-                    configuration.Entity = entity;
-            }
-        }
 
         var polymorphedComp = Factory.GetComponent<PolymorphedEntityComponent>();
         polymorphedComp.Parent = uid;
