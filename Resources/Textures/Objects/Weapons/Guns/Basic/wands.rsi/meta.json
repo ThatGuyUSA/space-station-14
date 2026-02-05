@@ -47,6 +47,9 @@
     {
       "name": "fire"
     },
+    {
+      "name": "healing"
+    },
 	{
       "name": "door-effect"
     },
@@ -77,6 +80,6 @@
     {
       "name": "locker-inhand-left",
       "directions": 4
-    }
+    },
   ]
 }

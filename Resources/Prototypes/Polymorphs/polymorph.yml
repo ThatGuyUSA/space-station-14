@@ -67,6 +67,87 @@
       path: /Audio/Magic/forcewall.ogg
 
 - type: polymorph
+  id: WizardForcedRandom
+  configuration:
+    entity: MobKobold
+    forced: true
+    inventory: Drop
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    polymorphSound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+    exitPolymorphSound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+
+- type: entityTable
+  id: WizardForcedRandomPolyTable
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      children:
+      - id: FoodBreadPlain
+      - id: MobBreadDog
+      - id: MobCatCake
+    - !type:GroupSelector
+      children:
+      - id: MobAdultSlimesBlue
+      - id: MobAdultSlimesGreen
+      - id: MobAdultSlimesYellow
+    - !type:GroupSelector
+      children:
+      - id: MobCarp
+      - id: MobCarpHolo
+        weight: 0.5
+      - id: MobCarpRainbow
+        weight: 0.25
+    - !type:GroupSelector
+      children:
+      - id: MobKobold
+      - id: MobMonkey
+      - id: MobEmotionalSupportScurret
+        weight: 0.1
+    - !type:GroupSelector
+      children:
+      - id: MobMouse
+      - id: MobMouse1
+      - id: MobMouse2
+      - id: MobMouse3
+      - id: MobMouseCancer
+        weight: 0.5
+    - !type:GroupSelector
+      children:
+      - id: XenoborgStealth
+      - id: XenoborgEngi
+      - id: XenoborgHeavy
+      - id: XenoborgScout
+    - !type:GroupSelector
+      children:
+      - id: MobGiantSpider
+      - id: MobClownSpider
+        weight: 0.25
+    - id: MobBehonkerGrav
+    - id: MobCatSyndy
+    - id: MobCockroach
+    - id: MobCorgiCerberus
+    - id: MobHellspawn
+    - id: MobWatcherMagmawing
+    - id: PlayerBorgBattery
+    - id: PlayerBorgSyndicateSaboteurBattery
+      weight: 0.1
+    - id: MobRatKing
+      weight: 0.1
+    - id: MobSkeletonPerson
+      weight: 0.1
+    - id: PlayerBorgSyndicateAssaultBattery
+      weight: 0.1
+    - id: MobGingerbread
+      weight: 0.1
+    - id: MobRatKingBuff
+      weight: 0.01
+
+- type: polymorph
   id: WizardWallDoor
   configuration:
     entity: WoodDoor

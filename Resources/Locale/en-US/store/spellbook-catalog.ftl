@@ -27,7 +27,7 @@ spellbook-polymorph-rod-name = Rod Polymorph
 spellbook-polymorph-rod-desc = Change into an Immovable Rod with limited movement.
 
 spellbook-charge-name = Charge
-spellbook-charge-desc = Adds a charge back to your wand!
+spellbook-charge-desc = Adds a charge back to your wand! However it occasionally backfires and decrements the total capacity of said wand.
 
 spellbook-ethereal-jaunt-name = Ethereal Jaunt
 spellbook-ethereal-jaunt-description = Slip into the ethereal plane to slip away from your enemies!
@@ -69,6 +69,9 @@ spellbook-hammer-singularity-description = Ever wonder what it'd be like to be t
 
 spellbook-staff-animation-name = Staff of Animation
 spellbook-staff-animation-description = Bring inanimate objects to life!
+
+spellbook-wand-assortment-name = Wand Assortment
+spellbook-wand-assortment-description = A collection of wands that allow for a wide variety of utility. The collection includes a wand of death, a wand of entrance, a wand of fireball, a wand of polymorph, and a wand of healing! Wands do not recharge, so be conservative in use. Comes in a handy belt.
 
 # Events
 

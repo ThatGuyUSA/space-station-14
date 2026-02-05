@@ -173,7 +173,7 @@
   - type: Projectile
     damage:
       types:
-        Poison: 5
+        Blunt: 1
   - type: TriggerOnCollide
     fixtureID: projectile
     # Projectile.DeleteOnCollide is true, but allow this to hit multiple entities if they're
@@ -205,6 +205,22 @@
   components:
   - type: PolymorphOnTrigger
     polymorph: WizardForcedMonkey
+  - type: WhitelistTriggerCondition
+    userWhitelist:
+      components:
+      - MobState
+
+- type: entity
+  id: ProjectilePolyboltRandom
+  parent: ProjectilePolyboltBase
+  name: chaos polybolt
+  description: I reject my humanity, Wizard!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PolymorphOnTrigger
+    Polymorph: MobMonkey
+    #PolyTable: WizardForcedRandomPolyTable
+    RandomMobState: true
   - type: WhitelistTriggerCondition
     userWhitelist:
       components:

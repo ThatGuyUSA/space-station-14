@@ -1,5 +1,5 @@
+using System.Linq;
 using Content.Server.Actions;
-using Content.Server.Humanoid;
 using Content.Server.Inventory;
 using Content.Server.Polymorph.Components;
 using Content.Shared.Body;
@@ -22,6 +22,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Robust.Shared.Map.Components;
+
 
 namespace Content.Server.Polymorph.Systems;
 
@@ -216,6 +218,7 @@ public sealed partial class PolymorphSystem : EntitySystem
         var polymorphedComp = Factory.GetComponent<PolymorphedEntityComponent>();
         polymorphedComp.Parent = uid;
         polymorphedComp.Configuration = configuration;
+
         AddComp(child, polymorphedComp);
 
         var childXform = Transform(child);
