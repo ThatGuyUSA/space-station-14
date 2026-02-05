@@ -322,17 +322,16 @@
     layers:
     - state: bullet
   - type: StunOnCollide
-    stunAmount: 2
+    stunAmount: 5
     drop: true
     knockdownAmount: 2
     slowdownAmount: 2
     walkSpeedModifier: 0.75
     sprintSpeedModifier: 0.75
   - type: Projectile
+    impactEffect: null
     damage:
       types:
         Blunt: 10
   - type: EmitSoundOnTrigger
-    sound: /Audio/Weapons/smash.ogg
-  - type: EmitSoundOnCollide
     sound: /Audio/Weapons/smash.ogg

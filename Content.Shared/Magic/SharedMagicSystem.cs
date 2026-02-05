@@ -44,29 +44,29 @@ namespace Content.Shared.Magic;
 /// </summary>
 public abstract class SharedMagicSystem : EntitySystem
 {
-    [Dependency] private readonly ISerializationManager _seriMan = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedGunSystem _gunSystem = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedDoorSystem _door = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly LockSystem _lock = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly SharedChargesSystem _charges = default!;
-    [Dependency] private readonly ExamineSystemShared _examine= default!;
+    [Dependency] private readonly ISerializationManager _seriMan = null!;
+    [Dependency] private readonly IMapManager _mapManager = null!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = null!;
+    [Dependency] private readonly IRobustRandom _random = null!;
+    [Dependency] private readonly SharedGunSystem _gunSystem = null!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = null!;
+    [Dependency] private readonly SharedTransformSystem _transform = null!;
+    [Dependency] private readonly INetManager _net = null!;
+    [Dependency] private readonly GibbingSystem _gibbing = null!;
+    [Dependency] private readonly EntityLookupSystem _lookup = null!;
+    [Dependency] private readonly SharedDoorSystem _door = null!;
+    [Dependency] private readonly InventorySystem _inventory = null!;
+    [Dependency] private readonly SharedPopupSystem _popup = null!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = null!;
+    [Dependency] private readonly LockSystem _lock = null!;
+    [Dependency] private readonly SharedHandsSystem _hands = null!;
+    [Dependency] private readonly TagSystem _tag = null!;
+    [Dependency] private readonly SharedAudioSystem _audio = null!;
+    [Dependency] private readonly SharedMindSystem _mind = null!;
+    [Dependency] private readonly SharedStunSystem _stun = null!;
+    [Dependency] private readonly TurfSystem _turf = null!;
+    [Dependency] private readonly SharedChargesSystem _charges = null!;
+    [Dependency] private readonly ExamineSystemShared _examine= null!;
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
 
@@ -78,7 +78,6 @@ public abstract class SharedMagicSystem : EntitySystem
         SubscribeLocalEvent<InstantSpawnSpellEvent>(OnInstantSpawn);
         SubscribeLocalEvent<TeleportSpellEvent>(OnTeleportSpell);
         SubscribeLocalEvent<WorldSpawnSpellEvent>(OnWorldSpawn);
-        SubscribeLocalEvent<HomingProjectileSpellEvent>(OnProjectileSpell);
         SubscribeLocalEvent<ProjectileSpellEvent>(OnProjectileSpell);
         SubscribeLocalEvent<ChangeComponentsSpellEvent>(OnChangeComponentsSpell);
         SubscribeLocalEvent<SmiteSpellEvent>(OnSmiteSpell);
@@ -286,6 +285,9 @@ public abstract class SharedMagicSystem : EntitySystem
                          fromMap.Position;
         _gunSystem.ShootProjectile(ent, direction, userVelocity, ev.Performer, ev.Performer, 25f);
     }
+
+    //public void HomingLaunchSequence(EntityUid target, EntProtoId proto, float distance, float speed)
+
     // End Projectile Spells
     #endregion
     #region Change Component Spells
@@ -322,7 +324,7 @@ public abstract class SharedMagicSystem : EntitySystem
         args.Handled = true;
     }
 
-    public virtual void OnVoidApplause(VoidApplauseSpellEvent ev)
+    protected virtual void OnVoidApplause(VoidApplauseSpellEvent ev)
     {
         if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer))
             return;
