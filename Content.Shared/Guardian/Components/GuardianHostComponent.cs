@@ -25,7 +25,7 @@ namespace Content.Shared.Guardian.Components
         [ViewVariables]
         public ContainerSlot GuardianContainer = null!;
 
-        [DataField]
+        [DataField, AutoNetworkedField]
         public EntProtoId Action = "ActionToggleGuardian";
 
         [DataField]

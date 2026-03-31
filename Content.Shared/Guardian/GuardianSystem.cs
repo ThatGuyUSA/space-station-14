@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Content.Shared.Popups;
 using Content.Shared.Actions;
 using Content.Shared.Damage.Systems;
@@ -165,6 +166,7 @@ namespace Content.Shared.Guardian
                 RetractGuardian(ent, (ent.Comp.HostedGuardian.Value, guardianComponent));
             else
                 ReleaseGuardian(ent, (ent.Comp.HostedGuardian.Value, guardianComponent));
+            Dirty(ent);
         }
 
         /// <summary>
@@ -388,14 +390,12 @@ namespace Content.Shared.Guardian
                 return;
             }
 
-            if (_container.ContainsEntity(host.Comp.GuardianContainer.Owner, guardian.Owner))
+            if (!host.Comp.GuardianContainer.Contains(guardian))
             {
-                Log.Debug("stopped guardian from being inserted again");
+                Log.Debug("Host has no guardian!");
                 return;
             }
-
-            Log.Debug("Inserting the guardian into the.");
-            //_container.Insert(guardian.Owner, host.Comp.GuardianContainer);
+            _container.Insert(guardian.Owner, host.Comp.GuardianContainer);
 
             DebugTools.Assert(host.Comp.GuardianContainer.Contains(guardian));
             _popupSystem.PopupPredicted(Loc.GetString("guardian-entity-recall"), host.Owner, host.Owner);
