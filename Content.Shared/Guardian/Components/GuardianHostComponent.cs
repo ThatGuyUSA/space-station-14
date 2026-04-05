@@ -23,7 +23,7 @@ namespace Content.Shared.Guardian.Components
         /// Container which holds the guardian
         /// </summary>
         [ViewVariables]
-        public ContainerSlot GuardianContainer = null!;
+        public ContainerSlot GuardianContainer;
 
         [DataField, AutoNetworkedField]
         public EntProtoId Action = "ActionToggleGuardian";

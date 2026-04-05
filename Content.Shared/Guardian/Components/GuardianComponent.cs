@@ -49,13 +49,13 @@ namespace Content.Shared.Guardian.Components
         /// Sound played when the guardian enters critical state.
         /// </summary>
         [DataField]
-        public SoundSpecifier? CriticalSound = new SoundPathSpecifier("/Audio/Effects/guardian_warn.ogg");
+        public SoundSpecifier CriticalSound = new SoundPathSpecifier("/Audio/Effects/guardian_warn.ogg");
 
         /// <summary>
         /// Sound played when the guardian dies.
         /// </summary>
         [DataField]
-        public SoundSpecifier? DeathSound = new SoundPathSpecifier("/Audio/Voice/Human/malescream_guardian.ogg", AudioParams.Default.WithVariation(0.2f));
+        public SoundSpecifier DeathSound = new SoundPathSpecifier("/Audio/Voice/Human/malescream_guardian.ogg", AudioParams.Default.WithVariation(0.2f));
 
     }
 }
