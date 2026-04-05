@@ -33,7 +33,7 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage:
-        id: AmeControllerUnanchored
+        id: AmeControllerFlatpack
 
 # Singularity
 
@@ -125,7 +125,7 @@
   - type: EntityTableContainerFill
     containers:
       entity_storage:
-        id: DebugGenerator # TODO change to flatpack
+        id: DebugGeneratorFlatpack
 
 - type: entity
   parent: CrateEngineering
