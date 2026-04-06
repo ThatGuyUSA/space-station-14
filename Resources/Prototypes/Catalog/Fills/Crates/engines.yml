@@ -118,17 +118,6 @@
 
 - type: entity
   parent: CrateEngineering
-  id: CrateEngineeringGenerator
-  name:  generator crate
-  suffix: DEBUG
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        id: DebugGeneratorFlatpack
-
-- type: entity
-  parent: CrateEngineering
   id: CrateEngineeringSolar
   name: solar assembly crate
   description: A kit with solar flatpacks and glass to construct ten solar panels.

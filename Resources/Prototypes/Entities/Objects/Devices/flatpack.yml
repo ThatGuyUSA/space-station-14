@@ -92,22 +92,6 @@
 
 - type: entity
   parent: BaseFlatpack
-  id: DebugGeneratorFlatpack
-  name: generator flatpack
-  suffix: DEBUG
-  description: A flatpack used for constructing a debug generator.
-  components:
-  - type: Flatpack
-    entity: Thruster
-  - type: Sprite
-    layers:
-    - state: base
-    - state: overlay
-      color: "#EFB341"
-    - state: icon-default
-
-- type: entity
-  parent: BaseFlatpack
   id: SingularityGeneratorFlatpack
   name: singularity generator flatpack
   description: A flatpack used for constructing a singularity generator.
