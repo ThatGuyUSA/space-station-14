@@ -9,6 +9,7 @@
     state: combat_hypo
   - type: GuardianCreator
     guardianProto: MobHoloparasiteGuardian
+    injector: true
 
 - type: entity
   parent: HoloparasiteInjector
@@ -18,6 +19,7 @@
   components:
   - type: GuardianCreator
     guardianProto: MobHoloClownGuardian
+    injector: true
 
 - type: entity
   parent: [BaseItem, BaseMagicalContraband]
@@ -31,7 +33,7 @@
       - state: lamp
   - type: GuardianCreator
     guardianProto: MobIfritGuardian
-    magical: true
+    deck: true
 
 - type: entity
   parent: [BoxCardboard, BaseSyndicateContraband]

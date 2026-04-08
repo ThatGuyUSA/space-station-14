@@ -20,10 +20,16 @@ namespace Content.Shared.Guardian.Components
         public bool Used;
 
         /// <remarks>
-        /// For other methods that are not done through injection.
+        /// For methods done through injection.
         /// </remarks>
         [DataField, AutoNetworkedField]
-        public bool Magical;
+        public bool Injector;
+
+        /// <remarks>
+        /// For methods obtained through a deck.
+        /// </remarks>
+        [DataField, AutoNetworkedField]
+        public bool Deck;
 
         /// <summary>
         /// The prototype of the guardian entity which will be created
