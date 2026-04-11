@@ -37,10 +37,8 @@
       - MMIFilled
       borg_module:
       - XenoborgModuleBasic
-      - BorgModuleAdvancedTool
-      - BorgModuleConstruction
-      - XenoborgModuleRCD
-      - BorgModuleCable
+      - XenoborgModuleAdvancedTool
+      - XenoborgModuleConstruction
       - XenoborgModuleAccessBreaker
   - type: ShowElectrocutionHUD
   - type: ShowHealthBars
@@ -266,10 +264,8 @@
       - MMI
       borg_module:
       - XenoborgModuleBasic
-      - BorgModuleAdvancedTool
-      - BorgModuleConstruction
-      - XenoborgModuleRCD
-      - BorgModuleCable
+      - XenoborgModuleAdvancedTool
+      - XenoborgModuleConstruction
       - XenoborgModuleAccessBreaker
   - type: ItemSlots
     slots:
