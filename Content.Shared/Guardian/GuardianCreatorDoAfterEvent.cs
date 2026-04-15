@@ -1,5 +1,4 @@
 using Content.Shared.DoAfter;
-using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Guardian;
