@@ -41,6 +41,7 @@ rcd-component-electrical = Electrical
 rcd-component-lighting = Lighting
 rcd-component-xenoborg-walls-and-flooring = Walls and flooring
 rcd-component-xenoborg-windows-and-grilles = Windows and grilles
+rcd-component-xenoborg-airlocks = Airlocks
 
 ### Prototype names (note: constructable items will be puralized)
 
