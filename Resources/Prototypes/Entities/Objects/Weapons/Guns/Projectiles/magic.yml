@@ -328,7 +328,7 @@
     layers:
     - state: bullet
   - type: StunOnCollide
-    stunAmount: 3
+    stunAmount: 2
     drop: true
     knockdownAmount: 2
     slowdownAmount: 2
@@ -339,5 +339,6 @@
     damage:
       types:
         Blunt: 10
+    soundHit: /Audio/Weapons/smash.ogg
   - type: EmitSoundOnTrigger
     sound: /Audio/Weapons/smash.ogg

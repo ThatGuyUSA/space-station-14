@@ -291,8 +291,6 @@ public abstract class SharedMagicSystem : EntitySystem
         _gunSystem.ShootProjectile(ent, direction, userVelocity, ev.Performer, ev.Performer, 25f);
     }
 
-    //public void HomingLaunchSequence(EntityUid target, EntProtoId proto, float distance, float speed)
-
     // End Projectile Spells
     #endregion
     #region Change Component Spells
