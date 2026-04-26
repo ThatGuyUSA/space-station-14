@@ -328,7 +328,7 @@
     layers:
     - state: bullet
   - type: StunOnCollide
-    stunAmount: 5
+    stunAmount: 3
     drop: true
     knockdownAmount: 2
     slowdownAmount: 2
