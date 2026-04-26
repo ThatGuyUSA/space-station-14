@@ -62,7 +62,7 @@
     - state: overlay
       color: "#EFB341"
   - type: Flatpack
-    entity: AmeShielding
+    entity: AmeController
   - type: StaticPrice
     price: 1000
   - type: GuideHelp
