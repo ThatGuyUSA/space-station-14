@@ -33,6 +33,12 @@ namespace Content.Shared.Guardian.Components
         [DataField, AutoNetworkedField]
         public bool GuardianLoose;
 
+        /// <remarks>
+        /// Popup showing that your host is getting injured.
+        /// </remarks>
+        [DataField]
+        public LocId GuardianDamagePopup = "guardian-entity-taking-damage";
+
         /// <summary>
         /// Sound played when a mob obtains a guardian through injection.
         /// </summary>
