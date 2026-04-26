@@ -15,6 +15,7 @@ using Content.Shared.Magic.Components;
 using Content.Shared.Magic.Events;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
+using Content.Shared.Objectives.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Speech.Muting;
@@ -273,6 +274,9 @@ public abstract class SharedMagicSystem : EntitySystem
 
         ev.Handled = true;
 
+        if (!_net.IsServer)
+            return; // client returns handled for predicted audio
+
         var xform = Transform(ev.Performer);
         var fromCoords = xform.Coordinates;
         var toCoords = ev.Target;
@@ -431,7 +435,7 @@ public abstract class SharedMagicSystem : EntitySystem
             if (TryComp<DoorComponent>(target, out var doorComp) && doorComp.State is not DoorState.Open)
                 _door.StartOpening(target);
 
-            if (TryComp<LockComponent>(target, out var lockComp) && lockComp.Locked)
+            if (TryComp<LockComponent>(target, out var lockComp) && lockComp.Locked && lockComp.BreakOnAccessBreaker)
                 _lock.Unlock(target, performer, lockComp);
         }
     }
@@ -475,7 +479,7 @@ public abstract class SharedMagicSystem : EntitySystem
 
         ev.Handled = true;
 
-        var allHumans = _mind.GetAliveHumans();
+        var allHumans = _target.GetAliveHumans();
 
         foreach (var human in allHumans)
         {
