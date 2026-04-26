@@ -68,6 +68,7 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly TurfSystem _turf = null!;
     [Dependency] private readonly SharedChargesSystem _charges = null!;
     [Dependency] private readonly ExamineSystemShared _examine= null!;
+    [Dependency] private readonly TargetSystem _target = null!;
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
 
@@ -328,7 +329,7 @@ public abstract class SharedMagicSystem : EntitySystem
         args.Handled = true;
     }
 
-    protected virtual void OnVoidApplause(VoidApplauseSpellEvent ev)
+    public virtual void OnVoidApplause(VoidApplauseSpellEvent ev)
     {
         if (ev.Handled || !PassesSpellPrerequisites(ev.Action, ev.Performer))
             return;
