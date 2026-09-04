@@ -294,6 +294,7 @@
         Quantity: 50
   - type: Tag
     tags:
+      - Condiment
       - Mayo
 
 # Baking
@@ -518,6 +519,7 @@
     state: cotton-dough-slice
   - type: Tag
     tags:
+    - Ingredient
     - Slice
     - ClothMade
   - type: Construction
@@ -712,6 +714,7 @@
         Quantity: 2.5
   - type: Tag
     tags:
+    - Ingredient
     - Slice
 
 - type: entity
@@ -774,6 +777,7 @@
         Quantity: 15
   - type: Tag
     tags:
+    - Ingredient
     - Slice
   - type: FoodSequenceElement
     entries:
@@ -840,6 +844,7 @@
         Quantity: 1
   - type: Tag
     tags:
+    - Ingredient
     - Slice
 
 - type: entity
@@ -889,6 +894,7 @@
         Quantity: 6
   - type: Tag
     tags:
+    - Ingredient
     - Slice
 
 - type: entity

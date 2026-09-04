@@ -41,6 +41,7 @@
   - type: Tag
     tags:
     - Trash
+    - Dinnerware
   - type: SpaceGarbage
 
 - type: entity
@@ -156,6 +157,7 @@
   - type: Tag
     tags:
     - Trash
+    - Dinnerware
 
 - type: entity
   parent: BaseFoodPlate
@@ -176,6 +178,7 @@
   - type: Tag
     tags:
     - Trash
+    - Dinnerware
 
 # Pie Tin
 
@@ -196,6 +199,7 @@
   - type: Tag
     tags:
     - Trash
+    - Dinnerware
   - type: PhysicalComposition
     materialComposition:
       Steel: 50
@@ -220,6 +224,7 @@
   - type: Tag
     tags:
     - Trash
+    - Dinnerware
   - type: PhysicalComposition
     materialComposition:
       Steel: 25
